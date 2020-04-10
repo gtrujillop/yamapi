@@ -17,22 +17,24 @@ ActiveRecord::Schema.define(version: 2020_04_09_202929) do
 
   create_table "episodes", force: :cascade do |t|
     t.text "title", null: false
-    t.integer "plot", null: false
+    t.jsonb "plot", default: {}
     t.integer "number", null: false
     t.bigint "season_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["plot"], name: "index_episodes_on_plot", using: :gin
     t.index ["season_id"], name: "index_episodes_on_season_id"
-    t.index ["title", "plot", "number"], name: "index_episodes_on_title_and_plot_and_number"
+    t.index ["title", "number"], name: "index_episodes_on_title_and_number"
   end
 
   create_table "movies", force: :cascade do |t|
     t.text "title", null: false
-    t.integer "plot", default: 0, null: false
+    t.jsonb "plot", default: {}
     t.float "unit_price", default: 0.0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["title", "plot"], name: "index_movies_on_title_and_plot"
+    t.index ["plot"], name: "index_movies_on_plot", using: :gin
+    t.index ["title"], name: "index_movies_on_title"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -48,14 +50,15 @@ ActiveRecord::Schema.define(version: 2020_04_09_202929) do
 
   create_table "seasons", force: :cascade do |t|
     t.text "title", null: false
-    t.integer "plot", null: false
+    t.jsonb "plot", default: {}
     t.integer "number", null: false
     t.float "unit_price", default: 0.0
     t.bigint "movie_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["movie_id"], name: "index_seasons_on_movie_id"
-    t.index ["title", "plot", "number"], name: "index_seasons_on_title_and_plot_and_number"
+    t.index ["plot"], name: "index_seasons_on_plot", using: :gin
+    t.index ["title", "number"], name: "index_seasons_on_title_and_number"
   end
 
   create_table "user_libraries", force: :cascade do |t|
