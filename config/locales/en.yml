@@ -34,3 +34,5 @@ en:
     not_present: "Plot must be present"
     synopsis_not_present: "Synopsis is not present"
     invalid_acts_structure: "The acts structure is not correct"
+  order:
+    item_already_in_user_library: "The item you want to buy is already in your library"

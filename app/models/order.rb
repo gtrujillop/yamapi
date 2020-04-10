@@ -23,9 +23,21 @@
 #
 class Order < ApplicationRecord
   belongs_to :purchaseable, polymorphic: true
-  belongs_to :user_library
+  belongs_to :user_library, required: true
   enum quality: { hd: 'hd', full_hd: 'full_hd', standard: 'standard' }
 
   validates :total_price, numericality: true
   validates :quality, inclusion: { in: qualities.keys }
+  validate :can_purchase
+
+  delegate :available_items, to: :user_library, allow_nil: true
+
+  private
+
+  def can_purchase
+    if available_items&.include?(purchaseable)
+      errors.add(:user_library, I18n.t('order.item_already_in_user_library'))
+    end
+  end
+  
 end

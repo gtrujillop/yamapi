@@ -27,7 +27,7 @@ RSpec.describe Season, type: :model do
   describe "associations" do
     it { should belong_to(:movie).required }
     it { should have_many(:episodes) }
-
+    it { should have_many(:orders) }
   end
   describe "validations" do
     it { should validate_presence_of(:title) }
