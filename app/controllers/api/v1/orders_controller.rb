@@ -15,8 +15,8 @@ module Api
       def order_params
         params.require(:order).permit(
           :purchaseable_id, 
-          :purchaseabe_type, 
-          :video_quality, 
+          :purchaseable_type, 
+          :quality, 
           :total_price, 
           :user_library_id
         )
