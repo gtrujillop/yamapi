@@ -33,5 +33,11 @@ module Yamapi
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+    config.i18n.default_locale = :en
+    config.autoload_paths << "#{Rails.root}/app/validators"
+    config.autoload_paths << "#{Rails.root}/app/serializers"
+    config.autoload_paths << "#{Rails.root}/app/blueprinters"
+    config.active_record.schema_format = :sql
   end
 end
