@@ -25,4 +25,6 @@ class Episode < ApplicationRecord
   include Plottable
   
   belongs_to :season, required: true
+
+  default_scope { order('number ASC') }
 end

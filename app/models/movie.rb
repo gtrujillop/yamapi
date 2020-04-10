@@ -17,7 +17,7 @@
 class Movie < ApplicationRecord
   include Monetizable
   include Plottable
-  
+
   has_many :seasons
 
   validates :title, presence: true

@@ -28,4 +28,5 @@ class Season < ApplicationRecord
   
   belongs_to :movie, required: true
   has_many :episodes
+  
 end
