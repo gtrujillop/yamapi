@@ -30,4 +30,7 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  plot:
+    not_present: "Plot must be present"
+    synopsis_not_present: "Synopsis is not present"
+    invalid_acts_structure: "The acts structure is not correct"
