@@ -4,7 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  number     :integer          not null
-#  plot       :integer          not null
+#  plot       :jsonb
 #  title      :text             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -12,8 +12,9 @@
 #
 # Indexes
 #
-#  index_episodes_on_season_id                  (season_id)
-#  index_episodes_on_title_and_plot_and_number  (title,plot,number)
+#  index_episodes_on_plot              (plot) USING gin
+#  index_episodes_on_season_id         (season_id)
+#  index_episodes_on_title_and_number  (title,number)
 #
 # Foreign Keys
 #
@@ -21,6 +22,7 @@
 #
 class Episode < ApplicationRecord
   include Identifiable
-
+  include Plottable
+  
   belongs_to :season, required: true
 end
