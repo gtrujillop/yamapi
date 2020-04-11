@@ -17,12 +17,11 @@
 #
 class UserLibrary < ApplicationRecord
   belongs_to :user
-  has_many :orders
+  has_many :orders, -> { where('created_at >= ?', DateTime.now - 2.days).order(created_at: :desc) }
 
   def available_items
-    orders.where('created_at >= ?', DateTime.now - 2.days).includes(:purchaseable).map do |order|
+    orders.includes(:purchaseable).map do |order|
       order.purchaseable
-    end
+    end.uniq
   end
-  
 end

@@ -81,6 +81,7 @@ RSpec.describe Order, type: :model do
               total_price: 100,
               user_library: user_library
             )
+            user_library.reload
             expect(new_order).to be_valid
           end
         end

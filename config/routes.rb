@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         resources :seasons, only: [:index]
       end
       resources :orders, only: [:create]
+      resources :user_libraries, only: [:show]
     end
   end
 end
