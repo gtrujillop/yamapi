@@ -5,7 +5,7 @@ ruby '2.5.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
-gem 'sidekiq', '~> 5.0', '>= 5.0.5'
+gem 'sidekiq', '~> 6.4'
 gem 'pg', '~> 0.18.4'
 gem 'rack', '~> 2.0.9'
 gem 'rack-cors'
